@@ -1,26 +1,58 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, {Component, Fragment} from 'react';
+
+import {Switch, Route} from 'react-router-dom';
+import {connect} from 'react-redux';
+import {handleInitialData} from './redux/shared';
+import LoadingBar from 'react-redux-loading';
+import Home from './page/home/home.component';
+import Header from './components/header/header.component';
+import Polls from './components/poll-list/poll-list.component';
+import PollPage from './page/poll/poll-page.component';
+import NewPoll from './components/new-poll/new-poll.component';
+import LeaderPage from './page/leaderboard/leaderboard.component';
+import RegisterPage from './page/auth/register.component';
+import LoginPage from './page/auth/login.component';
+
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component{
+  componentDidMount(){
+    this.props.dispatch(handleInitialData());
+  }
+
+  render(){    
+    return (
+
+      <Fragment>
+      <LoadingBar />
+      <Header/>
+      <main className="main__body">
+      {this.props.loading === true
+        ? null
+        : 
+        <Switch>
+        <Route exact path="/" component={Home} />
+        <Route path="/polls" component={Polls} />
+        <Route path="/poll/:id" component={PollPage} />
+        <Route path="/new" component={NewPoll} />
+        <Route path="/leaderboard" component={LeaderPage} />
+        <Route path="/register" component={RegisterPage} />
+        <Route path="/login"  component={LoginPage} />
+        </Switch>
+        }
+        </main>
+      
+      </Fragment>
+
+    )
+  }
 }
 
-export default App;
+
+function mapStateToProps({authedUser, polls, users}){
+  return {
+    loading: authedUser === null && polls == null && users == null
+  }
+}
+
+export default connect(mapStateToProps)(App);

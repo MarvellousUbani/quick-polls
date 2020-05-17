@@ -1,38 +1,390 @@
-.App {
+body{
+  padding:0;
+  margin:0;
+  font-family: 'Roboto', sans-serif;
+  background:#FFF9F9
+}
+
+a{
+  color:#464646;
+  text-decoration:none;
+}
+
+.current__user{
+  text-transform: capitalize;
+}
+
+.main__body{
+  padding: 1rem;
+}
+
+.main__body .home-row{
+  max-width: 1200px;
+  margin: auto;
+  padding:15vh 4rem;
+}
+
+.d-block{
+  display:block;
+}
+
+.d-none{
+  display:none;
+}
+
+.d-inline-block{
+  display:inline-block;
+}
+
+.pointer{
+  cursor:pointer;
+}
+
+
+.main__nav{
+  background:#fff;
+  display:flex;
+  justify-content: space-between;
+  align-items: center;
+  padding:.5rem 2rem;
+  font-size:.95rem;
+  border-bottom: 1px solid #ff4f5a4d;
+}
+
+.main__nav--logo{
+  font-size:1.5rem;
+  font-weight: 600;
+}
+
+.main__nav--list{
+  display: flex;
+}
+
+.main__nav--listitems{
+  list-style: none;
+  margin-right: 2rem;
+  padding-top: .5rem;
+}
+
+.text-center{
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.justify-center{
+  justify-content: center;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.my-4{
+  margin-top:1.5rem;
+  margin-bottom:1.5rem;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+
+.text__red{
+  color:#FF4F5A;
+}
+
+.button__red{
+  background:#FF4F5A;
+  color:#fff;
+  text-decoration: none;
+  border:none;
+  padding:.5rem 1rem;
+  border-radius: 2px;
+  transition:all .3s;
+  outline:none;
+  cursor:pointer;
+}
+
+.button__red:hover{
+  background:#131313;
+  color:#FF4F5A;
+}
+
+.main__body .row{
+  display:flex;
+}
+
+.main__body .profile__image{
+  max-width: 100px;
+  margin:auto;
+  height:100px;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: top;
+}
+
+.main__body .current__user{
+  font-size:1.5rem;
+  font-weight:bold;
+}
+
+.main__body .polls__created{
+  padding-right:1rem;
+  display:inline-flex;
+
+}
+
+.main__body--title{
+  font-size:5rem;
+  line-height: 1.2em;
+  max-width: 900px;
+  margin-bottom:1rem;
+}
+
+.main__body .big-btn{
+  font-size:1.2rem;
+  padding:1rem 3rem;
+}
+
+.poll{
+  display:block;
+}
+
+.main__body .col{
+  flex:1;
+}
+
+.poll-img{
+  width: 100%;
+  max-width: 600px;
+  border-radius:50%;
+}
+
+.polls__list{
+  max-width: 800px;
+  margin:auto;
+  width: 90%;
+}
+
+.polls__list .button__red{
+  border-radius:0;
+  border:1px solid #FFF9F9;
+}
+
+.poll{
+  background:#fff;
+  max-width: 450px;
+  margin:auto;
+  padding:1.5rem;
+  border:1px solid #FFCACD;
+  position:relative;
+  margin-bottom:1rem;
+}
+
+.poll__author{
+  background:#FF4F5A;
+  color:#fff;
+  font-size:.7rem;
+  padding:.3rem .5rem;
+}
+
+.poll__form{
+    justify-content: space-between;
+    margin-top: 3rem;
+}
+
+.poll__form .button__red{
+  width: 45%;
+    font-size: 1.3rem;
+    cursor:pointer;
+    outline:none;
+    margin-right: 1rem;
+}
+
+.poll__question{
+  font-size:1.2rem;
+  font-weight: 600;
+}
+
+.poll__votes{
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  font-size: .75rem;
+  background: #000;
+  padding: .5rem 1rem;
+  color: #fff;
+  border-radius: 20px;
+}
+
+.fancy-form{
+  width: 100%;
+  font-family: sans-serif;
+  padding: 1rem;
+  box-sizing: border-box;
+  font-size: 1.05rem;
+  border: 1px solid #e5e5e5;
+  outline: none;
+}
+
+.leaderboard{
+  max-width: 600px;
+  margin: auto;
+  padding:1.5rem;
+}
+
+.leaderboard__currentuser{
+  width: 100%;
+  background: linear-gradient(45deg, #ff4f5a, #624348);
+  color: #fff;
+  border-top-right-radius: 8px;
+  border-top-left-radius: 8px;
+}
+
+.leaderboard__currentuser--name{
+      font-size: 1rem;
+      font-weight: 400;
+}
+
+.leaderboard__currentuser--rank{
+  padding-top: 3rem;
+}
+
+.leaderboard__currentuser .rank{
+  display: inline-block;
+  margin-top: 1rem;
+  font-size: 2.5rem;
+  border-radius: 10px;
+  font-weight: bold;
+}
+
+.leaderboard__person--name{
+  font-size: 1.2rem;
+  position: relative;
+  top: -30px;
+  left: 20px;
+}
+
+.leaderboard__person .profile__image{
+  width: 70px;
+  height: 70px;
+}
+
+.person--score{
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  align-items: flex-end;
 }
 
-.App-link {
-  color: #61dafb;
+.person--score svg{
+  position: absolute;
+  top: 20px;
+  left: 10px;
+  font-size: 1.8rem;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+.person--score span{
+  display: block;
+  color: #b22828;
+  padding-top: .3rem;
+  font-weight: 400;
+}
+
+
+.leaderboard__people{
+  padding:2rem 0;
+  background: #fff;
+  border:1px solid #ffcacd; 
+  position:relative;
+}
+
+.leaderboard__person{
+  padding: 1rem;
+  border-bottom: 1px solid #ffcacd;
+}
+
+.leaderboard__person:nth-child(1) svg{
+  color:#ffb100;
+}
+
+
+.totalscore{
+  font-weight: bold !important;
+}
+
+
+.leaderboard__person:last-child{
+  border:none;
+}
+
+.leaderboard__person:before{ 
+  content: "";
+  margin-right: 1rem;
+}
+
+
+.j-between{
+  justify-content: space-between;
+}
+
+.r-bg{
+  border: none;
+   background: transparent;
+}
+
+.poll__result .bar-holder{
+  width: 100%;
+  height: 8px;
+  border-radius: 20px;
+  background: aliceblue;
+  margin-bottom: 1rem;
+}
+
+.poll__result .bar-line{
+  height: 8px;
+  background: red;
+  border-radius: 10px;
+}
+
+.poll__result .answer{
+  font-size: 2rem;
+}
+
+.poll__result .percentage{
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+
+.poll__result .total-votes{
+ color: #464646;
+}
+
+@media(max-width:900px){
+  .main__nav{
+      flex-direction: column;
+      overflow:hidden;
   }
-  to {
-    transform: rotate(360deg);
+
+  .poll__btn{
+      position:absolute;
+      top:0;
+      right:0;
+  }
+
+  .main__nav--listitems{
+      font-size:.8rem;
+  }
+
+  .main__body--title{
+      font-size:2.5rem;
+  }
+
+  .main__body .home-row{
+    padding:4rem 2rem;
+  }
+
+  .main__body .row{
+      flex-direction: column;
+  }
+
+  .main__nav--logo{
+    position: relative;
+    left: -50px;
+  }
+
+  .poll__form .button__red{
+    width:100%;
+    margin-bottom:1rem;
   }
 }
