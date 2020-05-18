@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
-import {Link} from 'react-router-dom';
+import {Link, Redirect} from 'react-router-dom';
 import PollItem from '../../components/poll-item/poll-item.component'
 import CurrentUserInfo from '../../components/current-user-info/current-user-info.component';
 import {isAnsweredPoll, answerPercentage, currentUserAnswer} from '../../utils/helpers';
@@ -9,6 +9,9 @@ import {isAnsweredPoll, answerPercentage, currentUserAnswer} from '../../utils/h
 
 class PollPage extends Component{
     render(){
+        if (this.props.idValid) {
+            return <Redirect to="/404" />;
+        }
         
         const {id, authedUser, polls, poll:{answers, question, users_answered}} = this.props;
         const firstPercentage = answerPercentage(polls, id, answers[0]);
@@ -49,12 +52,14 @@ class PollPage extends Component{
 
 function mapStateToProps ({polls, authedUser}, props) { 
     const { id } = props.match.params
+    const idValid = !polls[id];
 
     return {
     id,
     poll: polls[id],
     polls,
     authedUser,
+    idValid
     }
 }
 

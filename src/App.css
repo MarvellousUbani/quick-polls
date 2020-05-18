@@ -323,6 +323,10 @@ a{
    background: transparent;
 }
 
+.m-0{
+  margin:0;
+}
+
 .user-answer{
   font-weight: 900;
 }
@@ -352,6 +356,12 @@ a{
 
 .poll__result .total-votes{
  color: #464646;
+}
+
+.error-404{
+  text-align: center;
+  margin-top: 40vh;
+  font-size: 6rem;
 }
 
 @media(max-width:900px){
@@ -403,5 +413,10 @@ a{
 
   .question--tab{
     flex-direction:row !important;
+  }
+
+  .error-404{
+    font-size:3rem;
+    margin-top:10vh;
   }
 }

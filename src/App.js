@@ -13,6 +13,7 @@ import NewPoll from './components/new-poll/new-poll.component';
 import LeaderPage from './page/leaderboard/leaderboard.component';
 import RegisterPage from './page/auth/register.component';
 import LoginPage from './page/auth/login.component';
+import ErrorPage from './page/error/error.component';
 
 import './App.css';
 
@@ -40,6 +41,7 @@ class App extends Component{
         <PrivateRoute path="/leaderboard" component={LeaderPage} />
         <Route path="/register" component={RegisterPage} />
         <Route path="/login"  component={LoginPage} />
+        <Route component={ErrorPage} />
         </Switch>
         }
         </main>
