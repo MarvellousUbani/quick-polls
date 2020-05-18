@@ -13,7 +13,7 @@ class Poll extends Component {
             <div>
             <CurrentUserInfo />
             <div className="polls__list">
-                <div className="row justify-center">
+                <div className="row justify-center question--tab">
                     <button className="button__red">Answered Questions</button>
                     <button className="button__red">Unanswered Questions</button>
                 </div>
@@ -35,6 +35,7 @@ class Poll extends Component {
 
 
 function mapStateToProps({polls, authedUser, users}){
+    console.log(Object.keys(polls).sort((a, b) => polls[b].timestamp - polls[a].timestamp));
     return{
         pollIds: Object.keys(polls).sort((a, b) => polls[b].timestamp - polls[a].timestamp),
         currentUserInfo: users[authedUser.currentUser]

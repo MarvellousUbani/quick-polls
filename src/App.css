@@ -387,4 +387,17 @@ a{
     width:100%;
     margin-bottom:1rem;
   }
+
+  .leaderboard__currentuser--rank{
+    padding-top:0;   
+    padding-bottom: 1rem;
+  }
+
+  .leaderboard__person--name{
+    font-size: .9rem;
+  }
+
+  .question--tab{
+    flex-direction:row
+  }
 }
