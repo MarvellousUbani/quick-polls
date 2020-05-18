@@ -323,6 +323,10 @@ a{
    background: transparent;
 }
 
+.user-answer{
+  font-weight: 900;
+}
+
 .poll__result .bar-holder{
   width: 100%;
   height: 8px;

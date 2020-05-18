@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import {Link} from 'react-router-dom';
 import PollItem from '../../components/poll-item/poll-item.component'
 import CurrentUserInfo from '../../components/current-user-info/current-user-info.component';
-import {isAnsweredPoll, answerPercentage} from '../../utils/helpers';
+import {isAnsweredPoll, answerPercentage, currentUserAnswer} from '../../utils/helpers';
 
 
 
@@ -35,10 +35,11 @@ class PollPage extends Component{
                         <div className="bar-line" style={{width:`${secondPercentage}%`}}></div>
                     </div>
                 </div>
+                <p className="text-center my-4"><small>You answered <span className="user-answer">{currentUserAnswer(polls[id], authedUser)}</span></small></p>
             </div> 
                 :<PollItem id={id}/>
             }
-
+            
             <p className="text-center my-4"><Link to="/polls" className="button__red">See Other Polls</Link></p>
                 
              </div>

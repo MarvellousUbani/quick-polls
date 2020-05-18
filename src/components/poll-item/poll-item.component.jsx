@@ -32,10 +32,10 @@ class PollItem extends Component{
 
         return(
                 <div className="poll">
-                <span className="poll__author">{author}</span>
+                <span className="poll__author">{author.toUpperCase()} asks</span>
                 <p className="poll__question">{question}</p>
                 <small>{formatDate(timestamp)}</small>
-                <span className="poll__votes">{users_answered.length}</span>
+                <span className="poll__votes">{users_answered.length} vote(s)</span>
 
                 <div className={`${hideQuestion ? 'd-none': ''} poll__form`}>
                     

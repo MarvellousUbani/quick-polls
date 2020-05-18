@@ -35,8 +35,8 @@ class Poll extends Component {
             <CurrentUserInfo />
             <div className="polls__list">
                 <div className="row justify-center question--tab">
-                    <button className="button__red" onClick={this.answered}>Answered Questions</button>
-                    <button className="button__red" onClick={this.notanswered}>Unanswered Questions</button>
+                    <button className="button__red" onClick={this.answered}>Answered Question(s)</button>
+                    <button className="button__red" onClick={this.notanswered}>Unanswered Question(s)</button>
                 </div>
                 {
                     pollIds.map((id) =>  

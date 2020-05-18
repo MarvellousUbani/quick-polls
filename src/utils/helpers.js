@@ -9,6 +9,13 @@ export function userCreatedPolls(polls, name){
  
 }
 
+// user answer
+export function currentUserAnswer(poll, name){
+  if(poll.users_answered.find(user => user.name === name.currentUser)){
+    return poll.users_answered.find(user => user.name === name.currentUser)["answer"];
+  }
+}
+
 // Returns answered polls of a specific user
 export function answered(polls, name){
   const ids = [];
