@@ -398,6 +398,6 @@ a{
   }
 
   .question--tab{
-    flex-direction:row
+    flex-direction:row !important;
   }
 }

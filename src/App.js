@@ -52,7 +52,6 @@ class App extends Component{
 
 
 function mapStateToProps({authedUser, polls, users}){
-  console.log(`The auth user is `+authedUser.currentUser)
   return {
     loading: authedUser === null && polls == null && users == null,
   }

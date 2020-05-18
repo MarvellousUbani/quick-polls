@@ -9,6 +9,30 @@ export function userCreatedPolls(polls, name){
  
 }
 
+// Returns answered polls of a specific user
+export function answered(polls, name){
+  const ids = [];
+  for(let poll in polls){
+    if(polls[poll].users_answered.some(user => user.name === name)){
+        ids.push(polls[poll].id);
+     }
+  }
+  return ids;
+}
+
+// Returns unanswered polls of a specific user
+export function notanswered(polls, name){
+  const ids = [];
+  const answeredPolls = answered(polls, name);
+  
+  for(let poll in polls){
+    if(!answeredPolls.includes(polls[poll].id)){
+      ids.push(polls[poll].id);
+    }
+  }
+  return ids;
+}
+
 export function userAnsweredPolls(polls, name){
   return Object.values(polls).filter(poll => poll.users_answered.some(user => user.name === name)).length;
 }
