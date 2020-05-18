@@ -24,7 +24,7 @@ export function answered(polls, name){
         ids.push(polls[poll].id);
      }
   }
-  return ids;
+  return ids.reverse();
 }
 
 // Returns unanswered polls of a specific user
@@ -37,7 +37,7 @@ export function notanswered(polls, name){
       ids.push(polls[poll].id);
     }
   }
-  return ids;
+  return ids.reverse();
 }
 
 export function userAnsweredPolls(polls, name){

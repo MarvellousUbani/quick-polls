@@ -35,7 +35,9 @@ class NewPoll extends Component{
             firstchoice:'',
             secondchoice:'',
         }))
-        this.props.history.push(`/polls`)
+        setTimeout(()=>{
+          this.props.history.push(`/polls`)
+        }, 1000)
       }
       else{
         this.setState({
