@@ -3,6 +3,7 @@ import React, {Component, Fragment} from 'react';
 import {Switch, Route} from 'react-router-dom';
 import {connect} from 'react-redux';
 import {handleInitialData} from './redux/shared';
+import PrivateRoute from './utils/private-routes';
 import LoadingBar from 'react-redux-loading';
 import Home from './page/home/home.component';
 import Header from './components/header/header.component';
@@ -20,6 +21,7 @@ class App extends Component{
     this.props.dispatch(handleInitialData());
   }
 
+
   render(){    
     return (
 
@@ -32,10 +34,10 @@ class App extends Component{
         : 
         <Switch>
         <Route exact path="/" component={Home} />
-        <Route path="/polls" component={Polls} />
-        <Route path="/poll/:id" component={PollPage} />
-        <Route path="/new" component={NewPoll} />
-        <Route path="/leaderboard" component={LeaderPage} />
+        <PrivateRoute path="/polls" component={Polls} />
+        <PrivateRoute path="/poll/:id" component={PollPage} />
+        <Route path="/add" component={NewPoll} />
+        <PrivateRoute path="/leaderboard" component={LeaderPage} />
         <Route path="/register" component={RegisterPage} />
         <Route path="/login"  component={LoginPage} />
         </Switch>
@@ -50,8 +52,9 @@ class App extends Component{
 
 
 function mapStateToProps({authedUser, polls, users}){
+  console.log(`The auth user is `+authedUser.currentUser)
   return {
-    loading: authedUser === null && polls == null && users == null
+    loading: authedUser === null && polls == null && users == null,
   }
 }
 

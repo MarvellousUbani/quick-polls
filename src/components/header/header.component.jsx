@@ -26,11 +26,11 @@ class Header extends Component{
         return(
             <nav className="main__nav">
                     <Link to="/" className="main__nav--logo"><span className="text__red"><FontAwesomeIcon icon="medal"/></span> QUICK <span className="text__red">POLLS</span></Link>
-                    <Link to="/new" className="button__red poll__btn">Create Poll</Link>
+                    <Link to="/add" className="button__red poll__btn">Create Poll</Link>
                     
                        
                         { currentUser ? <ul className="main__nav--list">
-                        <li className="main__nav--listitems"><Link to="/polls">View Polls</Link></li>
+                        <li className="main__nav--listitems"><Link to="/polls">Polls</Link></li>
                         <li className="main__nav--listitems"><Link to="/leaderboard">Leaderboard</Link></li>
                         <li className="main__nav--listitems pointer" onClick={this.logout}>Logout</li></ul>:<ul className="main__nav--list">
                         <li className="main__nav--listitems"><Link to="/login">Login</Link></li>
