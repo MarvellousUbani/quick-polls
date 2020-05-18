@@ -27,6 +27,13 @@ A simple poll app built using React and Redux.
 
 ```
 
+## Login to Test App functionality
+
+```
+username: mike
+password: 1234
+```
+
 ## Authors:
 👤 Marvellous Michaels
 
