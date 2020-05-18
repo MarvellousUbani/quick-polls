@@ -16,7 +16,7 @@ A simple poll app built using React and Redux.
 - HTML/CSS(Flexbox)
 
 ## Live Demo
-[Click Here](#)
+[Click Here](https://quickpolls.netlify.app)
 
 ## How to Run the App Locally
 ```
