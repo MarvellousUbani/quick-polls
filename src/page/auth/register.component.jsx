@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import {connect} from 'react-redux';
 import {handleAddUser} from '../../redux/user/user.action';
 import { setCurrentUser } from '../../redux/authedUser/authedUser.action';
+import profileimg from '../../assets/man.png';
 
 const RegisterPage = ({history, dispatch}) => {
 
@@ -35,8 +36,8 @@ const RegisterPage = ({history, dispatch}) => {
     e.preventDefault();
     const username = id.toLowerCase();
 
-    if(username !== "" && name !== "" && avatarURL !== "" && password !== ""){
-      dispatch(handleAddUser({id:username, name, avatarURL, password}));
+    if(username !== "" && name !== "" && password !== ""){
+      dispatch(handleAddUser({id:username, name, avatarURL: avatarURL || profileimg, password}));
       dispatch(setCurrentUser(username));
       history.push(`/`)
     }else{
