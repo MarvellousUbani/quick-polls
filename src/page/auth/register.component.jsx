@@ -1,72 +1,74 @@
-import React, {Component} from 'react';
+import React, {useState} from 'react';
 import {connect} from 'react-redux';
 import {handleAddUser} from '../../redux/user/user.action';
 import { setCurrentUser } from '../../redux/authedUser/authedUser.action';
 
-class RegisterPage extends Component{
-  state =  {
-    id:'',
-    name: '',
-    avatarURL:'',
-    password:'', 
-    error:'',
-  }
+const RegisterPage = ({history, dispatch}) => {
 
-  handleChange = e => {
-    const name = e.target.name;
+  
+  const [id, setId] = useState("");
+  const [name, setName] = useState("");
+  const [password, setPass] = useState("");
+  const [avatarURL, setAvatar] = useState("");
+  const [error, setErrorMessage] = useState("");
+
+  const handleChange = e => {
+    
+    const propname = e.target.name;
     const value = e.target.value;
 
-    this.setState({
-      ...this.state,
-      [name]: value
-    })
+    switch(propname){
+      case `id`:
+        return setId(value);
+      case `name`:
+        return setName(value);
+      case `password`:
+        return setPass(value);
+      case `avatarURL`:
+        return setAvatar(value);
+      default:
+        return;
+    }
   }
 
-  handleSubmit = e => {
+  const handleSubmit = e => {
     e.preventDefault();
-    let {id, name, avatarURL, password} = this.state;
-    id = id.toLowerCase();
-    const {dispatch} = this.props;
+    const username = id.toLowerCase();
 
-    if(id !== "" && name !== "" && avatarURL !== "" && password !== ""){
-      dispatch(handleAddUser({id, name, avatarURL, password}));
-      dispatch(setCurrentUser(id));
-      this.props.history.push(`/`)
+    if(username !== "" && name !== "" && avatarURL !== "" && password !== ""){
+      dispatch(handleAddUser({id:username, name, avatarURL, password}));
+      dispatch(setCurrentUser(username));
+      history.push(`/`)
     }else{
-      this.setState({
-        error: "Some Fields are Missing or Incorrect"
-      })
+      setErrorMessage("Some Fields are Missing or Incorrect");
     }
    
   }
+    return(
+      <div>
+      <h2 className="text-center">Register</h2>
+      <p className="text-center">{error}</p>
+      <form onSubmit={handleSubmit} className="poll my-4">
+      <label className="d-block my-4">  
+      <input type="text" placeholder="Username" className="fancy-form" name="id" value={id} onChange={handleChange}/>
+      </label>
+
+      <label className="d-block my-4">
+          <input type="text" placeholder="Fullname" className="fancy-form" name="name" value={name} onChange={handleChange}/>
+      </label>
+
+      <label className="d-block my-4">
+          <input type="text" placeholder="Avatar Link" className="fancy-form" name="avatarURL" value={avatarURL} onChange={handleChange}/>
+      </label>
+
+      <label className="d-block my-4">
+          <input type="password" placeholder="Password" className="fancy-form" name="password" value={password} onChange={handleChange}/>
+      </label>
+      <input type="submit" value="Sign Up" className="button__red"/>
+    </form>
+    </div>
+    )
   
-  render(){
-        const {id, name, avatarURL, password, error} = this.state;
-      return(
-        <div>
-        <h2 className="text-center">Register</h2>
-        <p className="text-center">{error}</p>
-        <form onSubmit={this.handleSubmit} className="poll my-4">
-        <label className="d-block my-4">  
-        <input type="text" placeholder="Username" className="fancy-form" name="id" value={id} onChange={this.handleChange}/>
-        </label>
-
-        <label className="d-block my-4">
-            <input type="text" placeholder="Fullname" className="fancy-form" name="name" value={name} onChange={this.handleChange}/>
-        </label>
-
-        <label className="d-block my-4">
-            <input type="text" placeholder="Avatar Link" className="fancy-form" name="avatarURL" value={avatarURL} onChange={this.handleChange}/>
-        </label>
-
-        <label className="d-block my-4">
-            <input type="password" placeholder="Password" className="fancy-form" name="password" value={password} onChange={this.handleChange}/>
-        </label>
-        <input type="submit" value="Sign Up" className="button__red"/>
-      </form>
-      </div>
-      )
-  }
 }
 
 

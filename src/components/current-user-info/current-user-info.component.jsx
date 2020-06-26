@@ -6,8 +6,8 @@ import {selectCurrentUserInfo} from '../../redux/authedUser/authedUser.selectors
 
 
 const CurrentUserInfo = ({currentUser, currentUser:{avatarURL, name, id}, createdPolls, answeredPolls}) => {
+    console.log(currentUser)
     return (
-        // currentUser && 
             <div className="text-center">
             <p><img className="profile__image" src={avatarURL} alt="Profile"/></p>
             <p><small>You are logged in as </small></p>

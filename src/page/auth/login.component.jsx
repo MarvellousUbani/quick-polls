@@ -1,72 +1,57 @@
-import React, {Component} from 'react';
+import React, {useState} from 'react';
 import {connect} from 'react-redux';
+import {createStructuredSelector} from 'reselect';
+
 import {setCurrentUser} from '../../redux/authedUser/authedUser.action';
+import {selectUsers} from '../../redux/user/user.selectors';
 
-class LoginPage extends Component{
+const LoginPage = ({dispatch, users, history}) => {
 
-  state = {
-      id:'',
-      password:'',
-      error:''
+  const [id, setId] = useState("");
+  const [password, setPass] = useState("");
+  const [error, setErrorMessage] = useState("");
+
+
+  const handleId = e => {
+    setId(e.target.value);
   }
 
-  handleChange = e => {
-    const name = e.target.name;
-    const value = e.target.value;
-
-    this.setState({
-      ...this.state,
-      [name]: value
-    })
+  const handlePass = e => {
+    setPass(e.target.value);
   }
 
-  handleSubmit = e => {
+  const handleSubmit = e => {
     e.preventDefault();
-    let {id, password} = this.state;
-    id = id.toLowerCase();
+    const username = id.toLowerCase();
     // Get store check that user id in store has a password then dispatch
-    const {dispatch, users} = this.props;
-    if(users[id] && users[id].password === password){
-        dispatch(setCurrentUser(id));
-        this.props.history.push(`/`)
+    if(users[username] && users[username].password === password){
+        dispatch(setCurrentUser(username));
+        history.push(`/`)
     }else{
-        this.setState({
-            ...this.state,
-            error: "Username or Password is Incorrect"
-        })
+       setErrorMessage("Username or Password is Incorrect");
     }
-
-  
   }
   
-  
-    
-  render(){
-       const {id, error, password} = this.state;
-      return(
-        <div>
-        <h2 className="text-center">Login</h2>
-        <p className="text-center">{error}</p>
-        <form onSubmit={this.handleSubmit} className="poll my-4">
-        <label className="d-block my-4">  
-        <input type="text" placeholder="Username" className="fancy-form" name="id" value={id} onChange={this.handleChange}/>
-        </label>
+    return(
+      <div>
+      <h2 className="text-center">Login</h2>
+      <p className="text-center">{error}</p>
+      <form onSubmit={handleSubmit} className="poll my-4">
+      <label className="d-block my-4">  
+      <input type="text" placeholder="Username" className="fancy-form" name="id" value={id} onChange={handleId}/>
+      </label>
 
-        <label className="d-block my-4">
-            <input type="password" placeholder="Password" className="fancy-form" name="password" value={password} onChange={this.handleChange}/>
-        </label>
-        <input type="submit" value="Login" className="button__red"/>
-      </form>
-      </div>
-      )
-  }
+      <label className="d-block my-4">
+          <input type="password" placeholder="Password" className="fancy-form" name="password" value={password} onChange={handlePass}/>
+      </label>
+      <input type="submit" value="Login" className="button__red"/>
+    </form>
+    </div>
+    )
 }
 
-
-function mapStateToProps({users}){
-    return{
-        users
-    }
-}
+const mapStateToProps = createStructuredSelector({
+  users: selectUsers
+})
 
 export default connect(mapStateToProps)(LoginPage);

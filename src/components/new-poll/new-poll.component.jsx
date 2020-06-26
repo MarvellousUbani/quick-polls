@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {connect} from 'react-redux';
 import {withRouter} from 'react-router-dom';
 import {createStructuredSelector} from 'reselect';
@@ -8,9 +8,9 @@ import { selectCurrentUser } from '../../redux/authedUser/authedUser.selectors';
 
 
 const NewPoll = ({dispatch, authedUser, history}) => {
-  const [ question, setQuestion] = React.useState("");
-  const [errorMessage, setErrorMessage] = React.useState("");
-  const [ choices, setChoices ] = React.useState([]);
+  const [ question, setQuestion] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
+  const [ choices, setChoices ] = useState([]);
 
   const handleQuestion = (e) => {
     setQuestion(e.target.value);
