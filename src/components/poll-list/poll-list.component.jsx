@@ -3,49 +3,46 @@ import {connect} from 'react-redux';
 import PollItem from '../poll-item/poll-item.component';
 import CurrentUserInfo from '../current-user-info/current-user-info.component';
 import {Link} from 'react-router-dom';
-import {answered, notanswered} from '../../utils/helpers';
+import {selectPolls, selectNotAnsweredPolls, selectAnsweredPolls} from '../../redux/poll/poll.selectors';
+import {selectCurrentUser} from '../../redux/authedUser/authedUser.selectors';
+import {createStructuredSelector} from 'reselect';
 
 class Poll extends Component {
-
     state = {
-        pollIds: notanswered(this.props.polls, this.props.currentUser)
+        polls: this.props.notanswered
     }
 
     answered = e => {
         e.preventDefault();
-        const {currentUser, polls} = this.props;
         this.setState({
-            pollIds: answered(polls, currentUser)
+           polls: this.props.answered
         })
     }
 
     notanswered = e => {
         e.preventDefault();
-        const {currentUser, polls} = this.props;
         this.setState({
-            pollIds: notanswered(polls, currentUser)
+            polls: this.props.notanswered
         })
     }
 
     render(){
-        const {pollIds} = this.state;
-        console.log(this.props.currentUser);
+        const { polls } = this.state;
+        const { currentUser } = this.props;
         return(
             <div>
             <CurrentUserInfo />
             <div className="polls__list">
-                <div className="row justify-center question--tab">
-                    <button className="button__red" onClick={this.answered}>Answered Question(s)</button>
-                    <button className="button__red" onClick={this.notanswered}>Unanswered Question(s)</button>
-                </div>
-                {
-                    pollIds.map((id) =>  
-                    <Link to={`/poll/${id}`}  key={id} >       
-                        <PollItem id={id} hideQuestion/>
-                    </Link>
-                        
-                )
-                }
+            <div className="row justify-center question--tab">
+                <button className="button__red" onClick={this.answered}>Answered Question(s)</button>
+                <button className="button__red" onClick={this.notanswered}>Unanswered Question(s)</button>
+            </div>
+            {
+                polls.map((poll) =>  
+                <Link to={`/poll/${poll.id}`} key={poll.id} >       
+                    <PollItem poll={poll} currentUser={currentUser} hideQuestion/>
+                </Link>)
+            }
 
             </div> 
             </div>
@@ -55,13 +52,12 @@ class Poll extends Component {
 
 
 
-function mapStateToProps({polls, authedUser, users}){
-    return{
-        pollIds: Object.keys(polls).sort((a, b) => polls[b].timestamp - polls[a].timestamp),
-        currentUser: authedUser.currentUser,
-        polls
-    }
-}
+const mapStateToProps = createStructuredSelector({
+    currentUser: selectCurrentUser,
+    polls: selectPolls,
+    notanswered: selectNotAnsweredPolls,
+    answered: selectAnsweredPolls
+})
 
 export default connect(mapStateToProps)(Poll);
 

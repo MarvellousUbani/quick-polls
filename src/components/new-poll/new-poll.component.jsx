@@ -1,81 +1,93 @@
-import React, {Component} from 'react';
-// import {Redirect} from 'react-router-dom';
+import React from 'react';
 import {connect} from 'react-redux';
 import {withRouter} from 'react-router-dom';
+import {createStructuredSelector} from 'reselect';
+
 import {handleAddPoll} from '../../redux/poll/poll.action';
+import { selectCurrentUser } from '../../redux/authedUser/authedUser.selectors';
 
-class NewPoll extends Component{
-  state = {
-      question:'',
-      firstchoice: '',
-      secondchoice: '',
-      error:'',
+
+const NewPoll = ({dispatch, authedUser, history}) => {
+  const [ question, setQuestion] = React.useState("");
+  const [errorMessage, setErrorMessage] = React.useState("");
+  const [ choices, setChoices ] = React.useState([]);
+
+  const handleQuestion = (e) => {
+    setQuestion(e.target.value);
   }
 
-  handleChange = (e) => {
-    let value = e.target.value;
-    let name = e.target.name;
-
-    this.setState({
-        ...this.state,
-        [name]: value
-    })
-  }
-
-  handleSubmit = (e) => {
-      e.preventDefault();
-      
-      const { question, firstchoice, secondchoice } = this.state;
-      const {dispatch, authedUser} = this.props;
-      const id =  Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
-      if(authedUser){
-        dispatch(handleAddPoll({question, authedUser, firstchoice, secondchoice, id}))
-        this.setState(() => ({
-            question: '',
-            firstchoice:'',
-            secondchoice:'',
-        }))
-        setTimeout(()=>{
-          this.props.history.push(`/polls`)
-        }, 1000)
-      }
-      else{
-        this.setState({
-            error:"You have to login or Register to create a poll."
-        })
-      }
-      
-  }
-
-  render(){
-      const {question, firstchoice, secondchoice, error} = this.state;
-      return(
-          <div>
-        <h2 className="text-center">Add New Poll</h2>
-        <p className="text-center">{error}</p>
-        <form onSubmit={this.handleSubmit} className="poll my-4">
-        <label className="d-block my-4">
-         
-          <textarea placeholder="Pick A Question:" className="fancy-form" name="question" value={question} onChange={this.handleChange}/>
-        </label>
-
-        <label className="d-block my-4">
-            <input type="text" placeholder="First Choice" className="fancy-form" name="firstchoice" value={firstchoice} onChange={this.handleChange}/>
-        </label>
-        <label className="d-block my-4">
-            <input type="text" placeholder="Second Choice" className="fancy-form" name="secondchoice" value={secondchoice} onChange={this.handleChange}/>
-        </label>
-        <input type="submit" value="Submit" className="button__red" disabled={question === "" || firstchoice === "" || secondchoice === ""}/>
-      </form>
-      </div>
-      )
-  }
-}
-
-function mapStateToProps({authedUser:{currentUser}}){
-    return{
-        authedUser: currentUser
+  const handleChoices = (e) => {
+    if(e.key === "Enter"){
+      setChoices([...choices, e.target.value]);
+      e.target.value = "";
     }
+    console.log(choices)
+
+  }
+
+  const resetForm = () => {
+    setQuestion("");
+    setChoices([]);
+    setErrorMessage("");
+  }
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const id =  Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
+
+    let responses = {};
+    choices.forEach(choice => 
+        responses[choice] = {name:choice, number:0}
+    );
+
+    if(authedUser){
+      if(choices.length > 1 && e.key !== "Enter"){
+        dispatch(handleAddPoll({question, authedUser, answers:responses, id }));
+        resetForm();
+        setTimeout(()=>{
+          history.push(`/polls`)
+        }, 1000)
+      }else{
+        setErrorMessage("Have 2+ options and tap the submit button");
+      }
+    }
+    else{
+      setErrorMessage("You have to login or Register to create a poll.");
+    }
+    
+  }
+
+  return(
+    <div>
+    <h2 className="text-center">Add New Poll</h2>
+    <p className="text-center">{errorMessage}</p>
+    <div className="poll my-4">
+    <label className="d-block my-4">
+    
+      <textarea placeholder="Pick A Question:" className="fancy-form" name="question" value={question} onChange={handleQuestion}/>
+    </label>
+
+    <label className="d-block my-4">
+        <input type="text" placeholder="Enter Possible Answers" className="fancy-form" name="choices" onKeyPress={handleChoices}/>
+    </label>
+
+ 
+    <div className="choices__box">
+      {choices.map(choice => {
+        return <span key={choice}>{choice}</span>
+      })}
+    </div>
+    
+    <input type="submit" value="Submit" className="button__red" onClick={handleSubmit} disabled={question === "" || choices.length < 2 }/>
+  </div>
+  </div>
+  )
+
 }
+
+
+const mapStateToProps = createStructuredSelector({
+  authedUser: selectCurrentUser
+}) 
 
 export default withRouter(connect(mapStateToProps)(NewPoll));

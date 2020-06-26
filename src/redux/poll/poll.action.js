@@ -21,18 +21,19 @@ function updatePollResult({id, authedUser, answer}){
         type:PollActionTypes.UPDATE_POLL,
         id,
         authedUser,
-        answer
+        answer,
     }
 }
 
-export function handleAddPoll({question, authedUser, firstchoice, secondchoice, id}){
+export function handleAddPoll({question, authedUser, answers, id, users_answered={}}){
     return(dispatch) => {
         dispatch(showLoading())
         return savePoll({
             question,
             author: authedUser,
-            answers:[firstchoice, secondchoice],
-            id
+            answers,
+            id,
+            users_answered
         }).then((poll) => dispatch(addPoll(poll)))
         .then(() => dispatch(hideLoading()))
     }

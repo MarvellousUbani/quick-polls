@@ -1,11 +1,16 @@
-import React, {Component} from 'react';
+import React from 'react';
 import {connect} from 'react-redux';
-import {totalUserPolls, sortedUserLeaderboard} from '../../utils/helpers';
+
+import {createStructuredSelector} from 'reselect';
+
+import {selectCreatedPolls, selectAnsweredPolls, selectPolls} from '../../redux/poll/poll.selectors';
+import {selectCurrentUserInfo} from '../../redux/authedUser/authedUser.selectors';
+import {selectUsers} from '../../redux/user/user.selectors';
+
+import {sortedUserLeaderboard, mappable} from '../../utils/helpers';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-class LeaderBoardPage extends Component{
-    render(){
-        const {users, polls, authedUser:{name, id, avatarURL}} = this.props;
+const LeaderBoardPage = ({users, createdPolls, answeredPolls, polls, currentUser:{name, id, avatarURL}}) => {
         const leaderboardList = sortedUserLeaderboard(polls, users);
         return(
            
@@ -19,7 +24,7 @@ class LeaderBoardPage extends Component{
                       </div>
                        <div className="col text-center leaderboard__currentuser--rank">
                           SCORE<br/>
-                          <span className="rank">{totalUserPolls(polls, id)}</span>
+                          <span className="rank">{mappable(createdPolls).length + mappable(answeredPolls).length}</span>
                       </div>
       
                   </div>
@@ -40,14 +45,15 @@ class LeaderBoardPage extends Component{
                 </div>
         )
     }
-}
 
-function mapStateToProps({authedUser, polls, users}){
- return{
-     users,
-     polls,
-     authedUser: users[authedUser.currentUser]
- }
-}
+
+
+const mapStateToProps = createStructuredSelector({
+    createdPolls: selectCreatedPolls,
+    answeredPolls: selectAnsweredPolls,
+    currentUser: selectCurrentUserInfo,
+    polls: selectPolls,
+    users: selectUsers
+})
 
 export default connect(mapStateToProps)(LeaderBoardPage);

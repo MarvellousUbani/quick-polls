@@ -4,58 +4,13 @@ export function formatDate (timestamp) {
     return time.substr(0, 5) + time.slice(-2) + ' | ' + d.toLocaleDateString()
   }
 
-export function userCreatedPolls(polls, name){
-  return  Object.values(polls).filter(user => user.author === name).length;
- 
+// Converts object to array
+export function mappable (item){
+  return Object.values(item);
 }
 
 // user answer
-export function currentUserAnswer(poll, name){
-  if(poll.users_answered.find(user => user.name === name.currentUser)){
-    return poll.users_answered.find(user => user.name === name.currentUser)["answer"];
-  }
-}
 
-// Returns answered polls of a specific user
-export function answered(polls, name){
-  const ids = [];
-  for(let poll in polls){
-    if(polls[poll].users_answered.some(user => user.name === name)){
-        ids.push(polls[poll].id);
-     }
-  }
-  return ids.reverse();
-}
-
-// Returns unanswered polls of a specific user
-export function notanswered(polls, name){
-  const ids = [];
-  const answeredPolls = answered(polls, name);
-  
-  for(let poll in polls){
-    if(!answeredPolls.includes(polls[poll].id)){
-      ids.push(polls[poll].id);
-    }
-  }
-  return ids.reverse();
-}
-
-export function userAnsweredPolls(polls, name){
-  return Object.values(polls).filter(poll => poll.users_answered.some(user => user.name === name)).length;
-}
-
-export function totalUserPolls(polls, name){
-  let createdPolls = userCreatedPolls(polls, name);
-  let answeredPolls = userAnsweredPolls(polls, name);
-
-  return createdPolls + answeredPolls;
-}
-
-export function isAnsweredPoll(polls, id, authedUser){
-  const ans = polls[id].users_answered.some(user => user.name === authedUser.currentUser);
-  return ans;
- 
-}
 
 export function answerPercentage(polls, id, answer){
   const totalAnswers = polls[id].users_answered.length;
@@ -71,7 +26,7 @@ export function sortedUserLeaderboard(polls, users){
     let fullname = person.name;
     let avatarURL = person.avatarURL;
     let createdPolls= Object.values(polls).filter(user => user.author === person.id).length;
-    let answeredPolls= Object.values(polls).filter(poll => poll.users_answered.some(user => user.name === person.id)).length;
+    let answeredPolls= Object.values(polls).filter(poll => poll.users_answered[name]).length;
     let total = createdPolls + answeredPolls;
     
     leaderboardUsers.push({

@@ -145,6 +145,34 @@ a{
   flex:1;
 }
 
+.option{
+  padding: .3rem .75rem;
+    color: #FF4F5A;
+    border: 1px solid #FF4F5A;
+    text-transform: capitalize;
+    display: inline-flex;
+    margin-right: .5rem;
+    margin-bottom: .5rem;
+    box-shadow: 0px 0px 4px 0px #ff4f5a;
+}
+
+.choices__box{
+  max-width: 300px; 
+    padding: 1rem;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.choices__box span{
+  border: 2px solid #ff4f5a;
+  display: inline-flex;
+  margin-right: .3rem;
+  text-transform: capitalize;
+  padding: .2rem .4rem;
+  color: #ff4f5a;
+  margin-bottom:.5rem
+}
+
 .poll-img{
   width: 100%;
   max-width: 600px;
@@ -180,16 +208,17 @@ a{
 }
 
 .poll__form{
-    justify-content: space-between;
+    text-align:center;
     margin-top: 3rem;
 }
 
 .poll__form .button__red{
-  width: 45%;
-    font-size: 1.3rem;
-    cursor:pointer;
-    outline:none;
-    margin-right: 1rem;
+  width: 100%;
+  font-size: 1.3rem;
+  cursor: pointer;
+  outline: 1px solid #fff;
+  margin-bottom: .5rem;
+  max-width: 300px;
 }
 
 .poll__question{

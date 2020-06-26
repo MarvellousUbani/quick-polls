@@ -1,4 +1,5 @@
 import {PollActionTypes} from './poll.types'
+import {updateAnswer, updateUsersAnswered} from './poll.utils'
 
 const polls = (state={}, action) => {
     switch(action.type){
@@ -13,12 +14,14 @@ const polls = (state={}, action) => {
                 [action.poll.id] : action.poll,
             }
         case PollActionTypes.UPDATE_POLL:
-            const usersAnswered  = state[action.id].users_answered;
+            const pollData  = state[action.id];
+            console.log(pollData.answers)
             return{
                 ...state,
                 [action.id]:{
                     ...state[action.id],
-                    users_answered: usersAnswered.some(user => user.name === action.authedUser.currentUser) ? usersAnswered : usersAnswered.concat([{name: action.authedUser.currentUser, answer:action.answer }])
+                    answers: updateAnswer(pollData.answers, action.answer),
+                    users_answered: updateUsersAnswered(pollData.users_answered, action.authedUser, action.answer)
                 }
             }
 

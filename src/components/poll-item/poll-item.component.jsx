@@ -1,62 +1,43 @@
-import React, {Component} from 'react';
-import {connect} from 'react-redux';
+import React from 'react';
+
+import { connect } from 'react-redux';
+
 import {formatDate} from '../../utils/helpers';
 import {handleUpdatePoll} from '../../redux/poll/poll.action';
 
-import {withRouter } from 'react-router-dom'
+import {mappable} from '../../utils/helpers';
 
-class PollItem extends Component{
+const PollItem = ({updatePoll, poll, hideQuestion, currentUser, id}) => {
 
-    updatePoll = (e) => {
-        const {dispatch, poll:{id}, authedUser} = this.props;
-        const answer = e.target.value;
-
-        dispatch(handleUpdatePoll({
-            id,
-            answer,
-            authedUser
-        }))
-
-    }
-
-    render(){
-        
-        const {poll, hideQuestion} = this.props;
        
-        if(poll === null){
-            return <p>This poll does not exist </p>
-        }
-
-        const {author, question, timestamp, users_answered, answers} = poll;
-
-
-        return(
-                <div className="poll">
-                <span className="poll__author">{author.toUpperCase()} asks</span>
-                <p className="poll__question">{question}</p>
-                <small>{formatDate(timestamp)}</small>
-                <span className="poll__votes">{users_answered.length} vote(s)</span>
-
-                <div className={`${hideQuestion ? 'd-none': ''} poll__form`}>
-                    
-                    <button value={answers[0]} className="button__red" onClick={this.updatePoll}>{answers[0]}</button>
-                    <button  value={answers[1]} className="button__red" onClick={this.updatePoll}>{answers[1]}</button>
-                </div>
-                </div>  
-             
-           
-        )
+    if(poll === null){
+        return <p>This poll does not exist </p>
     }
+
+    const {author, question, timestamp, users_answered, answers} = poll;
+ 
+
+    return(
+        <div className="poll">
+        <span className="poll__author">{author.toUpperCase()} asks</span>
+        <p className="poll__question">{question}</p>
+        <small>{formatDate(timestamp)}</small>
+        <span className="poll__votes">{mappable(users_answered).length} vote(s)</span>
+
+        <div className={`${hideQuestion ? 'd-none': ''} poll__form`}>
+            {mappable(answers).map(answer => 
+                <button key={answer.name} className="button__red" onClick={() => updatePoll({id, authedUser: currentUser, answer: answer.name})}>{answer.name}</button>  
+            )}
+ 
+        </div>
+       </div>     
+    )
 }
 
-function mapStateToProps({authedUser, polls}, {id, hideQuestion}){  
-    const poll = polls[id]
 
-    return {
-        authedUser,
-        poll,
-        hideQuestion,
-    }
-}
+const mapDispatchToProps = dispatch => ({
+    updatePoll: data => dispatch(handleUpdatePoll(data))
+})
 
-export default withRouter(connect(mapStateToProps)(PollItem))
+
+export default connect(null, mapDispatchToProps)(PollItem);

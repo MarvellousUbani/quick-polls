@@ -22,13 +22,15 @@ let users = {
 }
 
 let polls = {
-    "8xf0y6ziyjabvozdd253nd": {
+      "8xf0y6ziyjabvozdd253nd": {
         id: "8xf0y6ziyjabvozdd253nd",
         question: "Are you a morning or an evening person?",
         author: "mike",
         timestamp: 1518122597860,
-        answers: ['Morning', 'Evening'],
-        users_answered: [{ name: 'ify', answer: 'Evening'}],
+        answers:{'morning': {name:'morning', number:0}, 
+                'evening':{name:'evening', number:1}},
+        users_answered: {"ify": { answer: 'Evening'}}
+        
       },
 
       "6xf0y6ziyjabvozdd253nd": {
@@ -36,8 +38,9 @@ let polls = {
         question: "If you could choose a citizenship, pick one?",
         author: "ify",
         timestamp: 1518122597860,
-        answers: ['Canada', 'Malta'],
-        users_answered: [],
+        answers:{'canada': {name:'canada', number:0}, 
+                'malta':{name:'malta', number:0}},
+        users_answered: {},
       },
 
       "7xf0y6ziyjabvozdd253nd": {
@@ -45,8 +48,9 @@ let polls = {
         question: "Would you choose a dog or a cat as pet?",
         author: "mike",
         timestamp: 1518122597860,
-        answers: ['Cat', 'Dog'],
-        users_answered: [],
+        answers:{'cat': {name:'cat', number:0}, 
+                'dog':{name:'dog', number:0}},
+        users_answered: {},
       },
 
       "5xf0y6ziyjabvozdd253nd": {
@@ -54,8 +58,9 @@ let polls = {
         question: "100,000$ now or 30000$ every year for the next 4 years?",
         author: "diana",
         timestamp: 1518122597860,
-        answers: ['Now', 'In 4 Years'],
-        users_answered: [],
+        answers:{'4 years': {name:'4 years', number:0}, 
+                'now':{name:'now', number:0}},
+        users_answered: {},
       },
 }
 
@@ -72,7 +77,7 @@ export function _getPolls(){
 }
 
 
-function formatPoll ({ id, author, question, users_answered=[], answers=[]}) {
+function formatPoll ({ id, author, question, users_answered={}, answers={}}) {
     return {
     author,
     id,
