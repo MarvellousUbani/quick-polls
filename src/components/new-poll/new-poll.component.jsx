@@ -20,7 +20,6 @@ const NewPoll = ({ dispatch, authedUser, history }) => {
       setChoices([...choices, e.target.value]);
       e.target.value = "";
     }
-    console.log(choices);
   };
 
   const resetForm = () => {
@@ -29,12 +28,7 @@ const NewPoll = ({ dispatch, authedUser, history }) => {
     setErrorMessage("");
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const id =
-      Math.random().toString(36).substring(2, 15) +
-      Math.random().toString(36).substring(2, 15);
-
+  const handleResponses = (e, id) => {
     let responses = {};
     choices.forEach(
       (choice) => (responses[choice] = { name: choice, number: 0 })
@@ -55,6 +49,14 @@ const NewPoll = ({ dispatch, authedUser, history }) => {
     } else {
       setErrorMessage("You have to login or Register to create a poll.");
     }
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const id =
+      Math.random().toString(36).substring(2, 15) +
+      Math.random().toString(36).substring(2, 15);
+    handleResponses(e, id);
   };
 
   return (
