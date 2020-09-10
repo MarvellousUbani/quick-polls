@@ -1,243 +1,240 @@
-body{
-  padding:0;
-  margin:0;
-  font-family: 'Roboto', sans-serif;
-  background:#FFF9F9
+body {
+  padding: 0;
+  margin: 0;
+  font-family: "Roboto", sans-serif;
+  background: #fff9f9;
 }
 
-a{
-  color:#464646;
-  text-decoration:none;
+a {
+  color: #464646;
+  text-decoration: none;
 }
 
-.current__user{
+.current__user {
   text-transform: capitalize;
 }
 
-.main__body{
+.main__body {
   padding: 1rem;
 }
 
-.main__body .home-row{
+.main__body .home-row {
   max-width: 1200px;
   margin: auto;
-  padding:15vh 4rem;
+  padding: 15vh 4rem;
 }
 
-.d-block{
-  display:block;
+.d-block {
+  display: block;
 }
 
-.d-none{
-  display:none;
+.d-none {
+  display: none;
 }
 
-.d-inline-block{
-  display:inline-block;
+.d-inline-block {
+  display: inline-block;
 }
 
-.pointer{
-  cursor:pointer;
+.pointer {
+  cursor: pointer;
 }
 
-
-.main__nav{
-  background:#fff;
-  display:flex;
+.main__nav {
+  background: #fff;
+  display: flex;
   justify-content: space-between;
   align-items: center;
-  padding:.5rem 2rem;
-  font-size:.95rem;
+  padding: 0.5rem 2rem;
+  font-size: 0.95rem;
   border-bottom: 1px solid #ff4f5a4d;
 }
 
-.main__nav--logo{
-  font-size:1.5rem;
+.main__nav--logo {
+  font-size: 1.5rem;
   font-weight: 600;
 }
 
-.main__nav--list{
+.main__nav--list {
   display: flex;
 }
 
-.main__nav--listitems{
+.main__nav--listitems {
   list-style: none;
   margin-right: 2rem;
-  padding-top: .5rem;
+  padding-top: 0.5rem;
 }
 
-.text-center{
+.text-center {
   text-align: center;
 }
 
-.justify-center{
+.justify-center {
   justify-content: center;
 }
 
-.my-4{
-  margin-top:1.5rem;
-  margin-bottom:1.5rem;
+.my-4 {
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
 }
 
-
-.text__red{
-  color:#FF4F5A;
+.text__red {
+  color: #ff4f5a;
 }
 
-.button__red{
-  background:#FF4F5A;
-  color:#fff;
+.button__red {
+  background: #ff4f5a;
+  color: #fff;
   text-decoration: none;
-  border:none;
-  padding:.5rem 1rem;
+  border: none;
+  padding: 0.5rem 1rem;
   border-radius: 2px;
-  transition:all .3s;
-  outline:none;
-  cursor:pointer;
+  transition: all 0.3s;
+  outline: none;
+  cursor: pointer;
 }
 
-.button__red:hover{
-  background:#131313;
-  color:#FF4F5A;
+.button__red:hover {
+  background: #131313;
+  color: #ff4f5a;
 }
 
-.main__body .row{
-  display:flex;
+.main__body .row {
+  display: flex;
 }
 
-.main__body .profile__image{
+.main__body .profile__image {
   max-width: 100px;
-  margin:auto;
-  height:100px;
+  margin: auto;
+  height: 100px;
   border-radius: 50%;
   object-fit: cover;
   object-position: top;
 }
 
-.main__body .current__user{
-  font-size:1.5rem;
-  font-weight:bold;
+.main__body .current__user {
+  font-size: 1.5rem;
+  font-weight: bold;
 }
 
-.main__body .polls__created{
-  padding-right:1rem;
-  display:inline-flex;
-
+.main__body .polls__created {
+  padding-right: 1rem;
+  display: inline-flex;
 }
 
-.main__body--title{
-  font-size:5rem;
+.main__body--title {
+  font-size: 5rem;
   line-height: 1.2em;
   max-width: 900px;
-  margin-bottom:1rem;
+  margin-bottom: 1rem;
 }
 
-.main__body .big-btn{
-  font-size:1.2rem;
-  padding:1rem 3rem;
+.main__body .big-btn {
+  font-size: 1.2rem;
+  padding: 1rem 3rem;
 }
 
-.poll{
-  display:block;
+.poll {
+  display: block;
 }
 
-.main__body .col{
-  flex:1;
+.main__body .col {
+  flex: 1;
 }
 
-.option{
-  padding: .3rem .75rem;
-    color: #FF4F5A;
-    border: 1px solid #FF4F5A;
-    text-transform: capitalize;
-    display: inline-flex;
-    margin-right: .5rem;
-    margin-bottom: .5rem;
-    box-shadow: 0px 0px 4px 0px #ff4f5a;
+.option {
+  padding: 0.3rem 0.75rem;
+  color: #ff4f5a;
+  border: 1px solid #ff4f5a;
+  text-transform: capitalize;
+  display: inline-flex;
+  margin-right: 0.5rem;
+  margin-bottom: 0.5rem;
+  box-shadow: 0px 0px 4px 0px #ff4f5a;
 }
 
-.choices__box{
-  max-width: 300px; 
-    padding: 1rem;
-    display: flex;
-    flex-wrap: wrap;
+.choices__box {
+  max-width: 300px;
+  padding: 1rem;
+  display: flex;
+  flex-wrap: wrap;
 }
 
-.choices__box span{
+.choices__box span {
   border: 2px solid #ff4f5a;
   display: inline-flex;
-  margin-right: .3rem;
+  margin-right: 0.3rem;
   text-transform: capitalize;
-  padding: .2rem .4rem;
+  padding: 0.2rem 0.4rem;
   color: #ff4f5a;
-  margin-bottom:.5rem
+  margin-bottom: 0.5rem;
 }
 
-.poll-img{
+.poll-img {
   width: 100%;
   max-width: 600px;
-  border-radius:50%;
+  border-radius: 50%;
 }
 
-.polls__list{
+.polls__list {
   max-width: 800px;
-  margin:auto;
+  margin: auto;
   width: 90%;
 }
 
-.polls__list .button__red{
-  border-radius:0;
-  border:1px solid #FFF9F9;
+.polls__list .button__red {
+  border-radius: 0;
+  border: 1px solid #fff9f9;
 }
 
-.poll{
-  background:#fff;
+.poll {
+  background: #fff;
   max-width: 450px;
-  margin:auto;
-  padding:1.5rem;
-  border:1px solid #FFCACD;
-  position:relative;
-  margin-bottom:1rem;
+  margin: auto;
+  padding: 1.5rem;
+  border: 1px solid #ffcacd;
+  position: relative;
+  margin-bottom: 1rem;
 }
 
-.poll__author{
-  background:#FF4F5A;
-  color:#fff;
-  font-size:.7rem;
-  padding:.3rem .5rem;
+.poll__author {
+  background: #ff4f5a;
+  color: #fff;
+  font-size: 0.7rem;
+  padding: 0.3rem 0.5rem;
 }
 
-.poll__form{
-    text-align:center;
-    margin-top: 3rem;
+.poll__form {
+  text-align: center;
+  margin-top: 3rem;
 }
 
-.poll__form .button__red{
+.poll__form .button__red {
   width: 100%;
   font-size: 1.3rem;
   cursor: pointer;
   outline: 1px solid #fff;
-  margin-bottom: .5rem;
+  margin-bottom: 0.5rem;
   max-width: 300px;
 }
 
-.poll__question{
-  font-size:1.2rem;
+.poll__question {
+  font-size: 1.2rem;
   font-weight: 600;
 }
 
-.poll__votes{
+.poll__votes {
   position: absolute;
   top: -10px;
   right: -10px;
-  font-size: .75rem;
+  font-size: 0.75rem;
   background: #000;
-  padding: .5rem 1rem;
+  padding: 0.5rem 1rem;
   color: #fff;
   border-radius: 20px;
 }
 
-.fancy-form{
+.fancy-form {
   width: 100%;
   font-family: sans-serif;
   padding: 1rem;
@@ -247,13 +244,13 @@ a{
   outline: none;
 }
 
-.leaderboard{
+.leaderboard {
   max-width: 600px;
   margin: auto;
-  padding:1.5rem;
+  padding: 1.5rem;
 }
 
-.leaderboard__currentuser{
+.leaderboard__currentuser {
   width: 100%;
   background: linear-gradient(45deg, #ff4f5a, #624348);
   color: #fff;
@@ -261,16 +258,16 @@ a{
   border-top-left-radius: 8px;
 }
 
-.leaderboard__currentuser--name{
-      font-size: 1rem;
-      font-weight: 400;
+.leaderboard__currentuser--name {
+  font-size: 1rem;
+  font-weight: 400;
 }
 
-.leaderboard__currentuser--rank{
+.leaderboard__currentuser--rank {
   padding-top: 3rem;
 }
 
-.leaderboard__currentuser .rank{
+.leaderboard__currentuser .rank {
   display: inline-block;
   margin-top: 1rem;
   font-size: 2.5rem;
@@ -278,89 +275,85 @@ a{
   font-weight: bold;
 }
 
-.leaderboard__person--name{
+.leaderboard__person--name {
   font-size: 1.2rem;
   position: relative;
   top: -30px;
   left: 20px;
 }
 
-.leaderboard__person .profile__image{
+.leaderboard__person .profile__image {
   width: 70px;
   height: 70px;
 }
 
-.person--score{
+.person--score {
   display: flex;
   flex-direction: column;
   align-items: flex-end;
 }
 
-.person--score svg{
+.person--score svg {
   position: absolute;
   top: 20px;
   left: 10px;
   font-size: 1.8rem;
 }
 
-.person--score span{
+.person--score span {
   display: block;
   color: #b22828;
-  padding-top: .3rem;
+  padding-top: 0.3rem;
   font-weight: 400;
 }
 
-
-.leaderboard__people{
-  padding:2rem 0;
+.leaderboard__people {
+  padding: 2rem 0;
   background: #fff;
-  border:1px solid #ffcacd; 
-  position:relative;
+  border: 1px solid #ffcacd;
+  position: relative;
 }
 
-.leaderboard__person{
+.leaderboard__person {
   padding: 1rem;
   border-bottom: 1px solid #ffcacd;
 }
 
-.leaderboard__person:nth-child(1) svg{
-  color:#ffb100;
+.leaderboard__person:nth-child(1) svg {
+  color: #ffb100;
 }
 
-
-.totalscore{
+.totalscore {
   font-weight: bold !important;
 }
 
-
-.leaderboard__person:last-child{
-  border:none;
+.leaderboard__person:last-child {
+  border: none;
 }
 
-.leaderboard__person:before{ 
+.leaderboard__person:before {
   content: "";
   margin-right: 1rem;
 }
 
-
-.j-between{
+.j-between {
   justify-content: space-between;
 }
 
-.r-bg{
+.r-bg {
   border: none;
-   background: transparent;
+  background: transparent;
 }
 
-.m-0{
-  margin:0;
+.m-0 {
+  margin: 0;
 }
 
-.user-answer{
+.user-answer {
   font-weight: 900;
 }
 
-.poll__result .bar-holder{
+.poll__result .bar-holder {
   width: 100%;
   height: 8px;
   border-radius: 20px;
@@ -368,84 +361,84 @@ a{
   margin-bottom: 1rem;
 }
 
-.poll__result .bar-line{
+.poll__result .bar-line {
   height: 8px;
   background: red;
   border-radius: 10px;
 }
 
-.poll__result .answer{
+.poll__result .answer {
   font-size: 2rem;
 }
 
-.poll__result .percentage{
+.poll__result .percentage {
   font-weight: bold;
   font-size: 1.2rem;
 }
 
-.poll__result .total-votes{
- color: #464646;
+.poll__result .total-votes {
+  color: #464646;
 }
 
-.error-404{
+.error-404 {
   text-align: center;
   margin-top: 40vh;
   font-size: 6rem;
 }
 
-@media(max-width:900px){
-  .main__nav{
-      flex-direction: column;
-      overflow:hidden;
+@media (max-width: 900px) {
+  .main__nav {
+    flex-direction: column;
+    overflow: hidden;
   }
 
-  .poll__btn{
-      position:absolute;
-      top:0;
-      right:0;
+  .poll__btn {
+    position: absolute;
+    top: 0;
+    right: 0;
   }
 
-  .main__nav--listitems{
-      font-size:.8rem;
+  .main__nav--listitems {
+    font-size: 0.8rem;
   }
 
-  .main__body--title{
-      font-size:2.5rem;
+  .main__body--title {
+    font-size: 2.5rem;
   }
 
-  .main__body .home-row{
-    padding:4rem 2rem;
+  .main__body .home-row {
+    padding: 4rem 2rem;
   }
 
-  .main__body .row{
-      flex-direction: column;
+  .main__body .row {
+    flex-direction: column;
   }
 
-  .main__nav--logo{
+  .main__nav--logo {
     position: relative;
     left: -50px;
   }
 
-  .poll__form .button__red{
-    width:100%;
-    margin-bottom:1rem;
+  .poll__form .button__red {
+    width: 100%;
+    margin-bottom: 1rem;
   }
 
-  .leaderboard__currentuser--rank{
-    padding-top:0;   
+  .leaderboard__currentuser--rank {
+    padding-top: 0;
     padding-bottom: 1rem;
   }
 
-  .leaderboard__person--name{
-    font-size: .9rem;
+  .leaderboard__person--name {
+    font-size: 0.9rem;
   }
 
-  .question--tab{
-    flex-direction:row !important;
+  .question--tab {
+    flex-direction: row !important;
   }
 
-  .error-404{
-    font-size:3rem;
-    margin-top:10vh;
+  .error-404 {
+    font-size: 3rem;
+    margin-top: 10vh;
   }
 }

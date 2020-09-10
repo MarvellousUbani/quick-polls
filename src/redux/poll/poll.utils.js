@@ -1,13 +1,13 @@
 export const updateAnswer = (answers, answer) => {
-   let answerObj = answers;
-   answerObj[answer].number+= 1;
+  let answerObj = answers;
+  answerObj[answer].number += 1;
 
-   return answerObj;
-}
+  return answerObj;
+};
 
 export const updateUsersAnswered = (users_answered, user, answer) => {
-    let usersObj = users_answered;
-    usersObj[user] = {answer: answer};
- 
-    return usersObj;
- }
+  let usersObj = users_answered;
+  usersObj[user] = { answer: answer };
+
+  return usersObj;
+};
