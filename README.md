@@ -1,5 +1,5 @@
 ### Quick Polls
-> Features: create polls, vote on polls, authentication, leaderboard
+> Features: create polls, vote on polls, authentication, leaderboardz
 
 ![quickpolls](https://user-images.githubusercontent.com/17970203/82158206-56ee9900-987e-11ea-88c8-cc545104802f.png)
 
